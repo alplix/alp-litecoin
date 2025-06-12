@@ -16,8 +16,5 @@ RUN ./autogen.sh && \
 RUN useradd -r -m litecoin && mkdir -p /opt/alp-litecoin && \
     chown -R litecoin:litecoin /opt/alp-litecoin
 
-COPY litecoin.conf /opt/alp-litecoin/litecoin.conf
-RUN chown litecoin:litecoin /opt/alp-litecoin/litecoin.conf
-
 USER litecoin
 ENTRYPOINT ["/usr/local/bin/litecoind", "-conf=/opt/alp-litecoin/litecoin.conf", "-datadir=/opt/alp-litecoin"]
