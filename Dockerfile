@@ -1,8 +1,16 @@
 FROM ubuntu:22.04
-RUN apt update && apt install -y wget tar
-RUN useradd -ms /bin/bash litecoin
-USER litecoin
-WORKDIR /home/litecoin
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
+    build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git \
+    libevent-dev libboost-system-dev libboost-filesystem-dev libboost-test-dev libboost-thread-dev \
+    libssl-dev libdb-dev libdb++-dev
+
+WORKDIR /opt/alp-litecoin
+COPY . .
+
+RUN ./autogen.sh && \
+    ./configure --disable-wallet --without-gui --disable-tests --disable-bench --without-miniupnpc --disable-zmq --disable-rpc && \
+    make -j$(nproc) && \
+    install -m 755 src/litecoind /usr/local/bin/litecoind
+
+ENTRYPOINT ["litecoind"]
