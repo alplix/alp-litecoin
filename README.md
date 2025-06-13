@@ -2,6 +2,8 @@
 
 `alp-litecoin` is a fully stripped-down custom Litecoin node built from source, with all non-essential components removed. This version is intended for minimal environments and automation, with focus on portability and simplicity.
 
+
+<a href="https://www.buymeacoffee.com/alplix"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=alplix&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
 ---
 
 ## 🚀 Quick Start
